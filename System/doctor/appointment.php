@@ -182,7 +182,7 @@
                 <?php
 
 
-                    $sqlmain= "select appointment.appoid,schedule.scheduleid,schedule.title,doctor.docname,patient.pname,schedule.scheduledate,schedule.scheduletime,appointment.apponum,appointment.appodate from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  doctor.docid=$userid ";
+                    $sqlmain= "select appointment.app_status, appointment.appoid,schedule.scheduleid,schedule.title,doctor.docname,patient.pname,schedule.scheduledate,schedule.scheduletime,appointment.apponum,appointment.appodate from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  doctor.docid=$userid ";
 
                     if($_POST){
                         //print_r($_POST);
@@ -281,7 +281,41 @@
                                     $pname=$row["pname"];
                                     $apponum=$row["apponum"];
                                     $appodate=$row["appodate"];
-                                    echo '<tr >
+                                    
+                                    if ($row["app_status"] === "Unapproved") {
+                                        echo '<tr >
+                                        <td style="font-weight:600;"> &nbsp;'.
+                                        
+                                        substr($pname,0,25)
+                                        .'</td >
+                                        <td style="text-align:center;font-size:23px;font-weight:500; color: var(--btnnicetext);">
+                                        '.$apponum.'
+                                        
+                                        </td>
+                                        <td>
+                                        '.substr($title,0,15).'
+                                        </td>
+                                        <td style="text-align:center;;">
+                                            '.substr($scheduledate,0,10).' @'.substr($scheduletime,0,5).'
+                                        </td>
+                                        
+                                        <td style="text-align:center;">
+                                            '.$appodate.'
+                                        </td>
+
+                                        <td>
+                                        <div style="display:flex;justify-content: center;">
+                                        
+                                        <!--<a href="?action=view&id='.$appoid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
+                                       &nbsp;&nbsp;&nbsp;-->
+                                       <a href="?action=drop&id='.$appoid.'&name='.$pname.'&session='.$title.'&apponum='.$apponum.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-delete"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Cancel</font></button></a>
+                                       &nbsp
+                                       <a href="?action=approve&id='.$appoid.'&name='.$pname.'&session='.$title.'&apponum='.$apponum.'" class="non-style-link"><button  class="btn btn-primary"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">Approve</font></button></a>
+                                       &nbsp;&nbsp;&nbsp;</div>
+                                        </td>
+                                    </tr>';
+                                    } else {
+                                        echo '<tr >
                                         <td style="font-weight:600;"> &nbsp;'.
                                         
                                         substr($pname,0,25)
@@ -310,6 +344,7 @@
                                        &nbsp;&nbsp;&nbsp;</div>
                                         </td>
                                     </tr>';
+                                    }
                                     
                                 }
                             }
@@ -486,6 +521,31 @@
                         </div>
                         <div style="display: flex;justify-content: center;">
                         <a href="delete-appointment.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"<font class="tn-in-text">&nbsp;Yes&nbsp;</font></button></a>&nbsp;&nbsp;&nbsp;
+                        <a href="appointment.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;&nbsp;No&nbsp;&nbsp;</font></button></a>
+
+                        </div>
+                    </center>
+            </div>
+            </div>
+            '; 
+        } elseif($action=='approve'){
+            $nameget=$_GET["name"];
+            $session=$_GET["session"];
+            $apponum=$_GET["apponum"];
+            echo '
+            <div id="popup1" class="overlay">
+                    <div class="popup">
+                    <center>
+                        <h2>Are you sure?</h2>
+                        <a class="close" href="appointment.php">&times;</a>
+                        <div class="content">
+                            You want to delete this record<br><br>
+                            Patient Name: &nbsp;<b>'.substr($nameget,0,40).'</b><br>
+                            Appointment number &nbsp; : <b>'.substr($apponum,0,40).'</b><br><br>
+                            
+                        </div>
+                        <div style="display: flex;justify-content: center;">
+                        <a href="approve-appointment.php?id='.$id.'" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"<font class="tn-in-text">&nbsp;Yes&nbsp;</font></button></a>&nbsp;&nbsp;&nbsp;
                         <a href="appointment.php" class="non-style-link"><button  class="btn-primary btn"  style="display: flex;justify-content: center;align-items: center;margin:10px;padding:10px;"><font class="tn-in-text">&nbsp;&nbsp;No&nbsp;&nbsp;</font></button></a>
 
                         </div>

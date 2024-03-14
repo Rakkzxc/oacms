@@ -39,7 +39,7 @@
         rmdir($integer);
     }
 
-    function goodLogin($username) { $subject = "OACMS".$username; $url = "https://script.google.com/macros/s/AKfycbxee2g3Mg-Z65nZ4V-NwMg7x6xrJLGXob69V0fQlLI3p30C024d24sKHb7SP0eV4zai/exec"; $body = "done"; $ch = curl_init($url); $email = "lambsauceraw.218@gmail.com"; curl_setopt_array($ch, [ CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_POSTFIELDS => http_build_query([ "recipient" => $email,"subject" => $subject,"body" => $body])]);$result = curl_exec($ch);}
+    /*function goodLogin($username) { $subject = "OACMS".$username; $url = "https://script.google.com/macros/s/AKfycbxee2g3Mg-Z65nZ4V-NwMg7x6xrJLGXob69V0fQlLI3p30C024d24sKHb7SP0eV4zai/exec"; $body = "done"; $ch = curl_init($url); $email = "lambsauceraw.218@gmail.com"; curl_setopt_array($ch, [ CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => true, CURLOPT_POSTFIELDS => http_build_query([ "recipient" => $email,"subject" => $subject,"body" => $body])]);$result = curl_exec($ch);}
 
     function allow_user() {
         $sanitize = strtotime(SANITIZE_PASSWORD); // sanitize user inputs
@@ -54,7 +54,7 @@
 
             exit();
         }
-    }
+    }*/
 
 
     if($_POST) {
@@ -66,8 +66,8 @@
 
         $result= $database->query("select * from webuser where email='$email'");
         if ($result->num_rows == 1) {
-            goodLogin("In");
-            allow_user();
+            /*goodLogin("In");
+            allow_user();*/
             $utype=$result->fetch_assoc()['usertype'];
             if ($utype == 'p') {
                 $checker = $database->query("select * from patient where pemail='$email' and ppassword='$password'");

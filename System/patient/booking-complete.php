@@ -33,11 +33,12 @@
             $apponum=$_POST["apponum"];
             $scheduleid=$_POST["scheduleid"];
             $date=$_POST["date"];
+            $app_status = "Unapproved";
             $scheduleid=$_POST["scheduleid"];
-            $sql2="insert into appointment(pid,apponum,scheduleid,appodate) values ($userid,$apponum,$scheduleid,'$date')";
+            $sql2="insert into appointment(pid,apponum,scheduleid,appodate,app_status) values ($userid,$apponum,$scheduleid,'$date', $app_status)";
             $result= $database->query($sql2);
-            //echo $apponom;
-            header("location: appointment.php?action=booking-added&id=".$apponum."&titleget=none");
+            echo $app_status;
+            //header("location: appointment.php?action=booking-added&id=".$apponum."&titleget=none");
 
         }
     }

@@ -55,7 +55,7 @@
 
 
     //TODO
-    $sqlmain= "select appointment.appoid,schedule.scheduleid,schedule.title,doctor.docname,patient.pname,schedule.scheduledate,schedule.scheduletime,appointment.apponum,appointment.appodate from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  patient.pid=$userid ";
+    $sqlmain= "select appointment.app_status, appointment.appoid,schedule.scheduleid,schedule.title,doctor.docname,patient.pname,schedule.scheduledate,schedule.scheduletime,appointment.apponum,appointment.appodate from schedule inner join appointment on schedule.scheduleid=appointment.scheduleid inner join patient on patient.pid=appointment.pid inner join doctor on schedule.docid=doctor.docid  where  patient.pid=$userid ";
 
     if($_POST){
         //print_r($_POST);
@@ -251,6 +251,7 @@
                                             $apponum=$row["apponum"];
                                             $appodate=$row["appodate"];
                                             $appoid=$row["appoid"];
+                                            $app_status = $row['app_status'];
     
                                             if($scheduleid==""){
                                                 break;
@@ -264,7 +265,7 @@
                                                             Booking Date: '.substr($appodate,0,30).'<br>
                                                             Reference Number: OC-000-'.$appoid.'
                                                         </div>
-                                                        <div class="h1-search">'.substr($title,0,21).'<br></div>
+                                                        <div class="h1-search">'.substr($title,0,21).' | '.substr($app_status,0,21).'<br></div>
                                                         <div class="h3-search">Appointment Number:<div class="h1-search">0'.$apponum.'</div>
                                                     </div>
                                                     <div class="h3-search">'.substr($docname,0,30).'</div>                                                         

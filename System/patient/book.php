@@ -41,7 +41,7 @@ for ($j = 0; $j < count($books); $j++) {
 	$stmt = $database->prepare($query);
 	$stmt->execute();
 
-	$query = "INSERT INTO appointment(pid,apponum,scheduleid,appodate) VALUES ($userid,$lastApponum+1,$books[$j],'$today')";
+	$query = "INSERT INTO appointment(pid,apponum,scheduleid,appodate,app_status) VALUES ($userid,$lastApponum+1,$books[$j],'$today', 'Unapproved')";
 	$stmt = $database->prepare($query);
 	$stmt->execute();
 }

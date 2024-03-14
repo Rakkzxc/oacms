@@ -208,7 +208,7 @@
                                 <td colspan="4">
                                     <p style="font-size: 5px">&nbsp;</p>
                                 </td>
-                            </tr>
+                            </tr><!-- 
                             <tr>
                             <td style="width: 25%;">
                                     <a href="?action=drop&id=<?php echo $userid.'&name='.$username ?>" class="non-style-link">
@@ -228,7 +228,7 @@
                                     </a>
                                 </td>
                                 
-                            </tr>
+                            </tr> -->
                         </table>
                     </center>
                     </td>
