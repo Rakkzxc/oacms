@@ -292,7 +292,7 @@
     </div> <?php
     
     if($_GET){
-        $id=$_GET["id"];
+        $app_num=$_GET["app_num"];
         $action=$_GET["action"];
         if($action=='booking-added'){
             
@@ -304,7 +304,7 @@
                         <h2>Booking Successfully.</h2>
                         <a class="close" href="appointment.php">&times;</a>
                         <div class="content">
-                        Your Appointment number is '.$id.'.<br><br>
+                        Your appointment number is '.$app_num.' bleeee.<br><br>
                             
                         </div>
                         <div style="display: flex;justify-content: center;">

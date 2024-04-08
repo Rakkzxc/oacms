@@ -20,6 +20,9 @@
         $password=$_POST['password'];
         $cpassword=$_POST['cpassword'];
         $id=$_POST['id00'];
+
+        // hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
         if ($password==$cpassword){
             $error='3';
@@ -41,7 +44,7 @@
             }else{
 
                 //$sql1="insert into doctor(docemail,docname,docpassword,docnic,doctel,specialties) values('$email','$name','$password','$nic','$tele',$spec);";
-                $sql1="update doctor set docemail='$email',docname='$name',docpassword='$password',docnic='$nic',doctel='$tele',specialties=$spec where docid=$id ;";
+                $sql1="update doctor set docemail='$email',docname='$name',docpassword='$hashed_password',docnic='$nic',doctel='$tele',specialties=$spec where docid=$id ;";
                 $database->query($sql1);
 
                 $sql1="update webuser set email='$email' where email='$oldemail' ;";

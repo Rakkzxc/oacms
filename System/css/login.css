@@ -1,14 +1,19 @@
 
 body{
     margin: 7%;
-    background-color: #F6F7FA;
+    background-image: url(../img/ss.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
 }
 
 
 
 .container{
     width: 45%;
-    background-color: white;
+    background-image: url(../img/qw.png);
+    background-size: cover;
     border: 1px solid rgb(235, 235, 235);
     border-radius: 8px;
     margin: 0;

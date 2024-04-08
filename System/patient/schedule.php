@@ -280,7 +280,7 @@
                             
                             </tbody>
                         </table>
-                        <h3>Total Fee: <span id="totalFee">P0.00</span><button type="Submit" class="login-btn btn-primary" style="margin-left:10px;padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;width:10%;text-align: center; font-size: 15px" value="Book now" name="booknow">Book now</button></h3>
+                        <h3>Total Fee: <span id="totalFee">P0.00</span><button type="Submit" class="login-btn btn-primary btn button-icon" style="margin-left:10px;padding-left: 25px;padding-right: 25px;padding-top: 10px;padding-bottom: 10px;width:10%;text-align: center; font-size: 15px; background-image: url('../img/icons/add.svg');" value="Book now" name="booknow">&nbsp; Book now</button></h3>
                         
                         </form>
                     </div>

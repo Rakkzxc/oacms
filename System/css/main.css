@@ -138,6 +138,23 @@ body{
     box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
 }
 
+.btn-primary-hard{
+  background-color: #1969AA ;
+  /*border: 1px solid rgba(57,108,240,0.1) ;*/    color: #e9e9e9;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  /*box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3)*/
+}
+
+
+.btn-primary-hard:hover{
+  background-color: #D8EBFA ;
+  /*border: 1px solid rgba(57,108,240,0.1) ;*/
+  color: #1969AA ;
+  box-shadow: 0 3px 5px 0 rgba(57,108,240,0.3);
+}
+
 
 .btn-in-text{
     font-size: 15px;
@@ -475,6 +492,17 @@ input[type=search]:focus {
 }
 .btn-delete:hover{
   background-image: url('../img/icons/delete-white.svg');
+}
+
+.btn-approve{
+  background-image: url('../img/icons/approve-white.png');
+  background-size: 18px;
+  background-repeat: no-repeat;
+}
+.btn-approve:hover{
+  background-image: url('../img/icons/approve-iceblue.png');
+  background-size: 18px;
+  background-repeat: no-repeat;
 }
 
 .btn-filter{

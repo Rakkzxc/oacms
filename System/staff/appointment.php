@@ -274,7 +274,7 @@
                                         substr($pname,0,25)
                                         .'</td >
                                         <td>
-                                        '.substr($docname,0,25).'
+                                        '.substr($docname,0,40).'
                                         </td>
                                         <td>
                                         '.substr($title,0,15).'

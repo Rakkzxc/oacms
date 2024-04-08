@@ -27,26 +27,33 @@ while ($row = $result->fetch_assoc()) {
 }
 $userid = $_POST['userid'];
 
-$queryGetLastApponum = "SELECT MAX(apponum) FROM appointment";
+$queryGetLastApponum = "SELECT MAX(apponum) AS max_apponum FROM appointment";
 $stmtGetLastApponum = $database->prepare($queryGetLastApponum);
 $stmtGetLastApponum->execute();
 
 $result = $stmtGetLastApponum->get_result();
 $rowww = $result->fetch_assoc();
-$lastApponum = $rowww['MAX(apponum)'];
+$lastApponum = $rowww['max_apponum'];
+
+if ($lastApponum === null) {
+    $lastApponum = 0;
+}
 
 for ($j = 0; $j < count($books); $j++) {
-	echo $userid.$lastApponum.$books[$j].$today;
-	$query = "UPDATE schedule SET nop = $nopp[$j] - 1 WHERE scheduleid = $books[$j]";
-	$stmt = $database->prepare($query);
-	$stmt->execute();
 
-	$query = "INSERT INTO appointment(pid,apponum,scheduleid,appodate,app_status) VALUES ($userid,$lastApponum+1,$books[$j],'$today', 'Unapproved')";
-	$stmt = $database->prepare($query);
-	$stmt->execute();
+    $newApponum = $lastApponum + 1;
+
+    $query = "UPDATE schedule SET nop = $nopp[$j] - 1 WHERE scheduleid = $books[$j]";
+    $stmt = $database->prepare($query);
+    $stmt->execute();
+
+    $query = "INSERT INTO appointment(pid,apponum,scheduleid,appodate,app_status) VALUES ($userid,$newApponum,$books[$j],'$today', 'Unapproved')";
+    $stmt = $database->prepare($query);
+    $stmt->execute();
+
+    $lastApponum = $newApponum;
 }
+
 $stmt->close();
 
-header("location:../patient");
-
-?>
+header("location: appointment.php?action=booking-added&app_num=$newApponum");

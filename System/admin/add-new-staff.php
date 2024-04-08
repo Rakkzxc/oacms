@@ -16,68 +16,63 @@
 </style>
 </head>
 <body>
-    <?php
+<?php
 
-    //learn from w3schools.com
+//learn from w3schools.com
 
-    session_start();
+session_start();
 
-    if(isset($_SESSION["user"])){
-        if(($_SESSION["user"])=="" or $_SESSION['usertype']!='a'){
-            header("location: ../login.php");
-        }
-
-    }else{
+if(isset($_SESSION["user"])){
+    if(($_SESSION["user"])=="" or $_SESSION['usertype']!='a'){
         header("location: ../login.php");
     }
+
+}else{
+    header("location: ../login.php");
+}
+
+
+
+//import database
+include("../connection.php");
+
+if($_POST){
+    //print_r($_POST);
+    $result= $database->query("select * from webuser");
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $cpassword=$_POST['cpassword'];
     
-    
-
-    //import database
-    include("../connection.php");
-
-
-
-    if($_POST){
-        //print_r($_POST);
-        $result= $database->query("select * from webuser");
-        $email=$_POST['email'];
-        $password=$_POST['password'];
-        $cpassword=$_POST['cpassword'];
-        
-        if ($password==$cpassword){
-            $error='3';
-            $result= $database->query("select * from webuser where email='$email';");
-            if($result->num_rows==1){
-                $error='1';
-            }else{
-
-                $sql1="insert into staff(staff_email,staff_password) values('$email','$password');";
-                $sql2="insert into webuser values('$email','s')";
-                $database->query($sql1);
-                $database->query($sql2);
-
-                //echo $sql1;
-                //echo $sql2;
-                $error= '4';
-                
-            }
-            
+    if ($password==$cpassword){
+        $error='3';
+        $result= $database->query("select * from webuser where email='$email';");
+        if($result->num_rows==1){
+            $error='1';
         }else{
-            $error='2';
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            
+            $sql1="insert into staff(staff_email,staff_password) values('$email','$hashedPassword');";
+            $sql2="insert into webuser values('$email','s')";
+            $database->query($sql1);
+            $database->query($sql2);
+
+            //echo $sql1;
+            //echo $sql2;
+            $error= '4';
+            
         }
-    
-    
-        
         
     }else{
-        //header('location: signup.php');
-        $error='3';
+        $error='2';
     }
-    
+}else{
+    //header('location: signup.php');
+    $error='3';
+}
 
-    header("location: doctors.php?action=add&error=".$error);
-    ?>
+header("location: staffs.php?action=add&error=".$error);
+?>
     
    
 

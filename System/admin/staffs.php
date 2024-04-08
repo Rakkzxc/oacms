@@ -59,7 +59,7 @@ $date = date('Y-m-d');
             </tr>
             <tr>
                 <td colspan="2" style="padding-top:30px;">
-                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Add New Doctor</p>
+                    <p class="heading-main12" style="margin-left: 45px;font-size:20px;color:rgb(49, 49, 49)">Add New Saff</p>
                 </td>
                 <td colspan="2">
                     <a href="?action=add&staff_id=none&error=0" class="non-style-link"><button  class="login-btn btn-primary btn button-icon"  style="display: flex;justify-content: center;align-items: center;margin-left:75px;background-image: url('../img/icons/add.svg');">Add New</font></button>
@@ -199,7 +199,7 @@ $date = date('Y-m-d');
                                         <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
                                             <form action="add-new-staff.php" method="POST" class="add-new-form">
                                                 <tr><td class="label-td" colspan="2">'.$errorlist[$error_1].'</td></tr>
-                                                <tr><td><p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Add New Doctor.</p><br><br></td></tr>
+                                                <tr><td><p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Add New Staff.</p><br><br></td></tr>
                                                 <tr><td class="label-td" colspan="2"><label for="Email" class="form-label">Email: </label></td></tr>
                                                 <tr><td class="label-td" colspan="2"><input type="email" name="email" class="input-text" placeholder="Email Address" required><br></td></tr>
                                                 <tr><td class="label-td" colspan="2"><label for="password" class="form-label">Password: </label></td></tr>
@@ -259,7 +259,7 @@ $date = date('Y-m-d');
                                         <table width="80%" class="sub-table scrolldown add-doc-form-container" border="0">
                                             <tr><td class="label-td" colspan="2">'.$errorlist[$error_1].'</td></tr>
                                             <form action="edit-staff.php" method="POST" class="add-new-form">
-                                                <tr><td><p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Edit Doctor Details.</p>Doctor ID : '.$staff_id.' (Auto Generated)<br><br></td></tr>
+                                                <tr><td><p style="padding: 0;margin: 0;text-align: left;font-size: 25px;font-weight: 500;">Edit Staff Details.</p>Staff ID : '.$staff_id.' (Auto Generated)<br><br></td></tr>
                                                 <tr><td class="label-td" colspan="2"><label for="Email" class="form-label">Email: </label><input type="hidden" value="'.$staff_id.'" name="id00"><input type="hidden" name="oldemail" value="'.$email.'" ></td></tr>
                                                 <tr><td class="label-td" colspan="2"><input type="email" name="email" class="input-text" placeholder="Email Address" value="'.$email.'" required><br></td></tr>
                                                 <tr><td class="label-td" colspan="2"><label for="password" class="form-label">Password: </label></td></tr>
